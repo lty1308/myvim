@@ -39,6 +39,11 @@ nnoremap tt :NERDTreeToggle<CR>
 """"""""""""
 nnoremap ff :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>/ :Rg<CR>
+" List files with ripgrep so :Files respects .gitignore
+if executable('rg')
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git"'
+endif
 
 """"""""""""
 " LSP
