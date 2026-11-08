@@ -5,7 +5,7 @@ Requires Vim 9.1+ (older versions work but skip the bundled packages).
 
 ## How to install
 
-    git clone git@github.com:lty1308/myvim.git ~/.myvim
+    git clone https://github.com/lty1308/myvim.git ~/.myvim
     sh ~/.myvim/install.sh
 
 Optional but recommended: `brew install ripgrep` for fast `:grep`, `:Rg` and `:Files`.
