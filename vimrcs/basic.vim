@@ -95,9 +95,6 @@ noremap <S-l> $
 noremap <S-k> <C-u>
 noremap <S-j> <C-d>
 
-" Syntax highlight for .less file
-nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
-
 " Toggle between dark and light solarized color scheme
 call togglebg#map("<F5>")
 
@@ -123,6 +120,3 @@ nnoremap <S-p> :cp<CR>
 " Grep the current word and open window to list all the files
 " Use 2 <CR> to work around hit-enter prompt
 nnoremap gr :grep -ir <cword> *<CR><CR> :cw<CR>
-
-" Associate *.flow with javascript filetype
-autocmd BufNewFile,BufRead *.flow set syntax=javascript

@@ -8,23 +8,32 @@
 " Run :PlugInstall to install, :PlugUpdate to update, :PlugClean to remove
 call plug#begin('~/.vim_tyli/plugged')
 
+" Navigation
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Editing
 Plug 'ervandew/supertab'
-Plug 'vim-scripts/taglist.vim'
-Plug 'wincent/command-t'
-Plug 'Raimondi/delimitMate'
+Plug 'cohama/lexima.vim'
+
+" Languages
 Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'groenewege/vim-less'
 Plug 'udalov/kotlin-vim'
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
 """"""""""""
-" Nerd Tree
+" NERDTree
 """"""""""""
-nnoremap tt :NERDTreeToggle<cr>
+nnoremap tt :NERDTreeToggle<CR>
+
+""""""""""""
+" fzf
+""""""""""""
+nnoremap ff :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 
 """"""""""""
 " Supertab
@@ -32,17 +41,6 @@ nnoremap tt :NERDTreeToggle<cr>
 let g:SuperTabDefaultCompletionType = "context"
 
 """"""""""""
-" Taglist
-""""""""""""
-map <leader>tl :TlistToggle<CR>
-
-""""""""""""
-" CommandT
-""""""""""""
-nmap ff :CommandT .<CR>
-
-""""""""""""
-" CommandT
+" JavaScript
 """"""""""""
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
