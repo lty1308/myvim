@@ -1,22 +1,22 @@
 #!/bin/sh
 set -e
-cd ~/.vim_tyli
+cd ~/.myvim
 
 # Back up an existing ~/.vimrc before replacing it
-if [ -f ~/.vimrc ] && ! grep -q 'vim_tyli' ~/.vimrc; then
+if [ -f ~/.vimrc ] && ! grep -qE 'myvim|vim_tyli' ~/.vimrc; then
     backup=~/.vimrc.bak.$(date +%Y%m%d%H%M%S)
     mv ~/.vimrc "$backup"
     echo "Backed up existing ~/.vimrc to $backup"
 fi
 
 cat > ~/.vimrc <<'VIMRC'
-set runtimepath+=~/.vim_tyli
-source ~/.vim_tyli/vimrcs/basic.vim
-source ~/.vim_tyli/vimrcs/plugin.vim
+set runtimepath+=~/.myvim
+source ~/.myvim/vimrcs/basic.vim
+source ~/.myvim/vimrcs/plugin.vim
 VIMRC
 
 # Install vim-plug
-curl -fsSLo ~/.vim_tyli/autoload/plug.vim --create-dirs \
+curl -fsSLo ~/.myvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install plugins

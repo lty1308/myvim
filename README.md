@@ -5,14 +5,14 @@ Requires Vim 9.1+ (older versions work but skip the bundled packages).
 
 ## How to install
 
-    git clone git@github.com:lty1308/vim_tyli.git ~/.vim_tyli
-    sh ~/.vim_tyli/install.sh
+    git clone git@github.com:lty1308/myvim.git ~/.myvim
+    sh ~/.myvim/install.sh
 
 Optional but recommended: `brew install ripgrep` for fast `:grep`, `:Rg` and `:Files`.
 
 ## How to update
 
-    cd ~/.vim_tyli
+    cd ~/.myvim
     git pull --rebase
     vim +PlugUpdate +PlugClean! +qa
 

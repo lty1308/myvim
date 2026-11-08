@@ -15,7 +15,7 @@ silent! packadd! matchit       " Extended % matching (if/else, tags)
 " vim-plug
 """"""""""""
 " Run :PlugInstall to install, :PlugUpdate to update, :PlugClean to remove
-call plug#begin('~/.vim_tyli/plugged')
+call plug#begin('~/.myvim/plugged')
 
 " Navigation
 Plug 'preservim/nerdtree'
