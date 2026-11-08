@@ -89,7 +89,7 @@ augroup END
 let mapleader = ","
 
 " Map <Space> to search
-nnoremap <space> /       
+nnoremap <space> /
 
 " Move between window
 nnoremap <C-j> <C-W>j
@@ -97,19 +97,10 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-" Relative line numebr
-function! ToggleRelativeNumber()
-    if(&relativenumber == 1)
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
+" Toggle relative line numbers
+nnoremap <leader>n :set relativenumber!<CR>
 
-" Toggle line number
-nnoremap nu :call ToggleRelativeNumber()<cr>
-
-" Map <esc> to jk 
+" Map jk to <esc>
 inoremap jk <esc>
 
 " Super left/right
@@ -130,10 +121,9 @@ else
     set grepprg=grep\ -rnI\ --exclude-dir=.git\ $*\ .
 endif
 
-" Next match
-nnoremap <S-c> :cn<CR>
-" Previous match
-nnoremap <S-p> :cp<CR>
+" Next/previous quickfix match (frees up C and P)
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
 
 " Grep the current word and list matches in the quickfix window
 nnoremap <silent> gr :silent grep! -w <cword><CR>:copen<CR>:redraw!<CR>
