@@ -3,6 +3,15 @@
 """"""""""""""""""""""""""""""""""""""""""
 
 """"""""""""
+" Bundled packages (ship with Vim 9.1; silent! for older Vims)
+""""""""""""
+silent! packadd! comment       " gc{motion} / gcc to toggle comments
+silent! packadd! editorconfig  " Respect .editorconfig files
+silent! packadd! hlyank        " Briefly highlight yanked text
+silent! packadd! nohlsearch    " Clear search highlight after moving on
+silent! packadd! matchit       " Extended % matching (if/else, tags)
+
+""""""""""""
 " vim-plug
 """"""""""""
 " Run :PlugInstall to install, :PlugUpdate to update, :PlugClean to remove
@@ -15,6 +24,12 @@ Plug 'junegunn/fzf.vim'
 
 " Editing
 Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " LSP + completion (:LspInstallServer in a buffer to install its server)
 Plug 'prabirshrestha/vim-lsp'
