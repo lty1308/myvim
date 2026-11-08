@@ -13,49 +13,74 @@
 """""""""""
 " General
 """""""""""
+" Start from Vim's own defaults (they are skipped once a ~/.vimrc exists):
+" backspace, incsearch, showcmd, ttimeout, restore cursor position, etc.
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
 set history=1000    " How many commands of history VIM has to remember
 set autoread        " Set to auto read when a file is changed from outside
-set shell=bash\ -l  " Use login shell
+set updatetime=300  " Faster CursorHold (git signs, LSP diagnostics)
+if has('clipboard')
+    set clipboard=unnamed   " Yank/paste via the system clipboard
+endif
 
-filetype plugin on  " Enable filetype plugin
-filetype indent on  " Enable indent
+filetype plugin indent on
+syntax on
 
 """""""""""
-" UI 
+" UI
 """""""""""
 " Color & Fonts
-syntax enable       " Enable syntax highlighting
 set background=dark " Background color
+if has('termguicolors') && $COLORTERM =~# '\v(truecolor|24bit)'
+    set termguicolors   " 24-bit color when the terminal supports it
+endif
 
 " Main window
-set so=7            " Set 7 lines to the cursor
+set scrolloff=7     " Keep 7 lines around the cursor
 set ruler           " Always show current position
 set ignorecase      " Ignore case when searching
 set smartcase       " Be smart about cases when searching
-set hlsearch        " Highligh search results
+set hlsearch        " Highlight search results
+set incsearch       " Search as you type
 set showmatch       " Show matching brackets
 set expandtab       " Use spaces instead of tabs
 set smarttab        " Smart tab usage
 set shiftwidth=4    " 1 tab equals 4 spaces
-set tabstop=4     
-set ai              " Auto indent
-set si              " Smart indent
+set tabstop=4
+set autoindent      " Auto indent (filetype indent plugins do the rest)
 set wrap            " Wrap lines
 set number          " Set line number
+set signcolumn=yes  " Always show the sign column (git, LSP) to avoid jitter
+set wildmenu        " Command-line completion menu
+set wildoptions=pum " ...shown as a popup
+set mouse=a         " Enable the mouse in all modes
 set laststatus=2    " Always show the status line
 set statusline=\ %F%m%r%h\ %w\ %r%{getcwd()}%h\ \ \ Line:\ %l,%P  " Format the status line
-set cursorline      " Horizontal cursor line
-set cursorcolumn    " Vertical cursor line
-hi CursorLine cterm=NONE,underline guibg=#F4F4F4
+set cursorline      " Highlight the current line
 
 " File
-set encoding=utf8   " Default encoding is UTF8
-set ffs=unix        " Use Unix as the standard file type
-set nobackup        " No back up
-set noswapfile      " No swap file
+set encoding=utf-8      " Default encoding is UTF-8
+set fileformats=unix,dos " Prefer Unix, but read DOS files without ^M
+set nobackup            " No back up
+set noswapfile          " No swap file
 
-" Git
-au FileType gitcommit set tw=720
+" Persistent undo (makes up for having no swap/backup files)
+if has('persistent_undo')
+    let s:undodir = expand('~/.vim/undo')
+    if !isdirectory(s:undodir)
+        call mkdir(s:undodir, 'p', 0700)
+    endif
+    let &undodir = s:undodir . '//'
+    set undofile
+endif
+
+" Filetype-specific settings
+augroup tyli_filetypes
+    autocmd!
+    autocmd FileType gitcommit setlocal textwidth=72
+augroup END
 
 """""""""""
 " Key maps
@@ -94,9 +119,6 @@ noremap <S-l> $
 " Page up/down
 noremap <S-k> <C-u>
 noremap <S-j> <C-d>
-
-" Toggle between dark and light solarized color scheme
-call togglebg#map("<F5>")
 
 " Grep
 

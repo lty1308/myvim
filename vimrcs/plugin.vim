@@ -37,12 +37,25 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+" Colorscheme
+Plug 'joshdick/onedark.vim'
+
 " Languages
 Plug 'pangloss/vim-javascript'
 Plug 'udalov/kotlin-vim'
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
+
+""""""""""""
+" Colorscheme
+""""""""""""
+" Falls back to the built-in habamax before plugins are installed
+try
+    colorscheme onedark
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme habamax
+endtry
 
 """"""""""""
 " NERDTree
